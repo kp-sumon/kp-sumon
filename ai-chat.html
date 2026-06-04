@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Control Engine | Digital Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="bg-[#05050c] text-gray-200 min-h-screen">
+    <div class="max-w-4xl mx-auto my-8 px-4">
+        <div class="glass rounded-2xl flex flex-col h-[85vh] border border-white/10 overflow-hidden">
+            <div class="p-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <div>
+                    <h3 class="text-lg font-bold text-white">⚙️ Omni-Core AI Engine</h3>
+                    <small class="text-emerald-400 flex items-center gap-1">● Quantum Compute Model Live</small>
+                </div>
+                <a href="dashboard.html" class="text-xs bg-white/5 border border-white/10 px-3 py-1 rounded hover:bg-white/10 transition">Esc Dashboard</a>
+            </div>
+            
+            <div class="flex-1 p-6 overflow-y-auto flex flex-col gap-4" id="chatContainer">
+                <div class="bg-white/5 border border-white/5 max-w-[80%] rounded-xl rounded-tl-none p-4 self-start leading-relaxed text-sm">
+                    System initialized. Welcome to the neural matrix. Ask me anything regarding code automation, infrastructure scaling, or data processing.
+                </div>
+            </div>
+            
+            <div class="p-4 border-t border-white/10 bg-black/40 flex gap-4">
+                <input type="text" id="aiInput" placeholder="Pass an executable instructions sequence or prompt..." 
+                    class="flex-1 bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 text-sm">
+                <button onclick="executeAiQuery()" class="btn-premium px-6 py-3 text-sm font-semibold">Execute</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chatContainer');
+        const aiInput = document.getElementById('aiInput');
+
+        function executeAiQuery() {
+            const prompt = aiInput.value.trim();
+            if (!prompt) return;
+
+            // Render Client User Stream Segment
+            const userBox = document.createElement('div');
+            userBox.className = "bg-blue-600/80 border border-blue-400/30 max-w-[80%] rounded-xl rounded-tr-none p-4 self-end text-white leading-relaxed text-sm";
+            userBox.innerText = prompt;
+            chatContainer.appendChild(userBox);
+            
+            aiInput.value = '';
+            aiInput.focus();
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Delayed Synthetic Processing Signal Flow Simulation
+            setTimeout(() => {
+                const matrixResponses = [
+                    "Instruction processed. Code block generated. Injecting optimizations into production environment pipelines.",
+                    "Neural weights analyzed. The recommended architecture strategy favors a decoupled global serverless database framework.",
+                    "Executing continuous integration deployment procedures on Edge clusters. Query latency remaining stable under 14ms.",
+                    "System telemetry optimized. AI modules compiled successfully."
+                ];
+                
+                const reply = matrixResponses[Math.floor(Math.random() * matrixResponses.length)];
+                const aiBox = document.createElement('div');
+                aiBox.className = "bg-white/5 border border-white/5 max-w-[80%] rounded-xl rounded-tl-none p-4 self-start leading-relaxed text-sm";
+                aiBox.innerText = reply;
+                
+                chatContainer.appendChild(aiBox);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 900);
+        }
+
+        aiInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") executeAiQuery();
+        });
+    </script>
+</body>
+</html>
