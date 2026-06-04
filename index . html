@@ -6,7 +6,7 @@
 <title>Kp Sumon | Explore the Future</title>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/style.css">
 <script>
 tailwind.config = {
 theme: {
@@ -146,6 +146,10 @@ function updateEnvironment() {
     }
 }
 window.onload = updateEnvironment;
+// Dynamic Telemetry Script Loader
+const telemetryScript = document.createElement('script');
+telemetryScript.src = './assets/js/main.js';
+document.body.appendChild(telemetryScript);
 </script>
 </body>
 </html>
