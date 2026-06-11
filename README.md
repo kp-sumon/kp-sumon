@@ -72,7 +72,12 @@ Responsive portfolio website built using HTML, CSS and JavaScript.
 - Create Professional Portfolio Projects
 - Contribute to Open Source
 
----
+## 📜 Certifications & Learning
+
+- 🏆 Fundamentals of Digital Marketing – Google Digital Garage
+- 📱 Mobile Network Optimization & System Performance
+- 🎥 YouTube & Digital Marketing Fundamentals
+- 🌱 Currently Learning Firebase & Modern Web Development
 
 ## ⚡ Fun Fact
 
