@@ -1,52 +1,66 @@
-# Hi there, I'm KP Sumon 👋
+# 👋 Hi, I'm KP Sumon
 
-💻 Frontend Web Developer  
-🌱 Currently learning Firebase & Modern Web Development  
-🚀 Building responsive and user-friendly web applications  
-📍 Dhaka, Bangladesh 🇧🇩
+### 💻 Frontend Web Developer
+
+🌱 Learning Firebase & Modern JavaScript  
+🚀 Building Responsive Web Applications  
+📍 Bangladesh 🇧🇩
 
 ---
 
 ## 🚀 About Me
 
-I'm a passionate web developer focused on creating clean, responsive, and user-friendly websites.
+I am a passionate Frontend Developer who enjoys building clean, responsive and user-friendly websites.
 
-- 🌱 Learning Firebase & JavaScript Ecosystem
-- 💻 Building Frontend Projects
-- 🔧 Improving Git & GitHub Workflow
-- 📚 Exploring Modern Web Technologies
-- 🤝 Open to Collaboration
+- 🌱 Currently learning Firebase
+- 💻 Building modern web projects
+- 🎯 Improving JavaScript skills
+- 🔥 Exploring new technologies
+- 🤝 Open to collaboration
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+- HTML5
+- CSS3
+- JavaScript
 
 ### Tools
 
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+- Git
+- GitHub
+- VS Code
 
 ---
 
-## 🌐 Portfolio
+## 📊 GitHub Stats
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=kp-sumon&show_icons=true&theme=tokyonight)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=kp-sumon&layout=compact&theme=tokyonight)
+
+---
+
+## 🚀 Featured Project
+
+### 🌐 Personal Portfolio Website
+
+Responsive portfolio website built using HTML, CSS and JavaScript.
 
 🔗 https://kp-sumon.github.io/kp-sumon/
 
 ---
 
-## 📫 Contact Me
+## 🌍 Connect With Me
 
-📧 charlisumon@gmail.com
+🔗 GitHub: https://github.com/kp-sumon
+
+🌐 Portfolio: https://kp-sumon.github.io/kp-sumon/
+
+📧 Email: charlisumon@gmail.com
 
 ---
 
@@ -55,14 +69,14 @@ I'm a passionate web developer focused on creating clean, responsive, and user-f
 - Learn Firebase Authentication
 - Build Dynamic Web Projects
 - Improve JavaScript Skills
-- Create a Professional Portfolio
+- Create Professional Portfolio Projects
 - Contribute to Open Source
 
 ---
 
 ## ⚡ Fun Fact
 
-I enjoy turning ideas into responsive web experiences and continuously learning new technologies.
+I enjoy turning ideas into responsive web experiences and continuously learning modern technologies.
 
 ---
 
