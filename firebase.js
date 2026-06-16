@@ -1,8 +1,8 @@
-// Firebase Web SDK Modules (CDN Version for Browser)
+// Firebase Web SDK Modules (CDN Version)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// আপনার আসল ১ নম্বর অ্যাপের কনফিগারেশন ডেটা (১০০% সঠিক)
+// আপনার ১ নম্বর অ্যাপের আসল কনফিগারেশন ডেটা
 const firebaseConfig = {
   apiKey: "AIzaSyBD0ql7gYXxvFk3_4F9FeMVNGMAZlys1N0",
   authDomain: "kp-sumon-portfolio.firebaseapp.com",
@@ -16,5 +16,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// অন্য ফাইল থেকে ব্যবহারের জন্য এক্সপোর্ট করা হলো
-export { db, collection, addDoc };
+// অন্য ফাইলে ব্যবহারের জন্য এক্সপোর্ট করা হলো
+export { db, collection, addDoc, serverTimestamp };
