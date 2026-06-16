@@ -1,16 +1,20 @@
-// Firebase Configuration
+// Firebase Web SDK Modules (CDN Version for Browser)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// আপনার আসল ১ নম্বর অ্যাপের কনফিগারেশন ডেটা (১০০% সঠিক)
 const firebaseConfig = {
-    apiKey: "AIzaSyAsYourActualAPIKey-XXXXXX",
-    authDomain: "kp-sumon.firebaseapp.com",
-    projectId: "kp-sumon",
-    storageBucket: "kp-sumon.appspot.com",
-    messagingSenderId: "1234567890",
-    appId: "1:1234:web:abcd"
+  apiKey: "AIzaSyBD0ql7gYXxvFk3_4F9FeMVNGMAZlys1N0",
+  authDomain: "kp-sumon-portfolio.firebaseapp.com",
+  projectId: "kp-sumon-portfolio",
+  storageBucket: "kp-sumon-portfolio.firebasestorage.app",
+  messagingSenderId: "982065305342",
+  appId: "1:982065305342:web:298cea67177407b7d137af"
 };
 
 // Initialize Firebase
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-const db = firebase.firestore();
-window.db = db; // Global access for script.js
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// অন্য ফাইল থেকে ব্যবহারের জন্য এক্সপোর্ট করা হলো
+export { db, collection, addDoc };
