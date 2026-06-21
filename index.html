@@ -1,51 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kp Sumon | Explore the Future</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="ultra.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        .theme-night { background: radial-gradient(circle at top right, #1a0b36, #05050c); color: #f3f4f6; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .btn-premium { background: linear-gradient(45deg, #a855f7, #ec4899); color: white; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 600; transition: all 0.3s; }
-        .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3); }
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumon.Dev | Ultimate Matrix</title>
+  <!-- Vanilla Tilt for 3D Effect -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ডাইনামিক থিম ভ্যারিয়েবল */
+    :root {
+      --bg-color: #030611;
+      --card-bg: rgba(255, 255, 255, 0.01);
+      --glow-color: #00f2fe;
+      --text-color: #ffffff;
+      --border-color: rgba(0, 242, 254, 0.15);
+    }
+    [data-theme="cyberpunk"] { --bg-color: #090214; --glow-color: #ff007f; --border-color: rgba(255, 0, 127, 0.3); }
+    [data-theme="emerald"] { --bg-color: #010804; --glow-color: #00ff87; --border-color: rgba(0, 255, 135, 0.3); }
+    [data-theme="sunset"] { --bg-color: #0d0202; --glow-color: #ff416c; --border-color: rgba(255, 65, 108, 0.3); }
+    [data-theme="sapphire"] { --bg-color: #020717; --glow-color: #4facfe; --border-color: rgba(79, 172, 254, 0.3); }
+    [data-theme="amethyst"] { --bg-color: #06010d; --glow-color: #a855f7; --border-color: rgba(168, 85, 247, 0.3); }
+    [data-theme="gold"] { --bg-color: #050505; --glow-color: #f5af19; --border-color: rgba(245, 175, 25, 0.35); }
+
+    body, html {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      display: flex; justify-content: center; align-items: center;
+      overflow: hidden;
+      transition: background 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ব্যাকগ্রাউন্ড কণা বা পার্টিকেল ক্যানভাস */
+    #particleCanvas {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ৩ডি গ্লাস কার্ড এবং মাউস ট্র্যাকিং শ্যাডো */
+    .glass-card {
+      position: relative; z-index: 10;
+      background: var(--card-bg);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 45px 35px;
+      width: 330px; text-align: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      transform-style: preserve-3d;
+      transition: border 1.2s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      box-shadow: 0 0 40px var(--glow-color);
+    }
+
+    .avatar {
+      width: 115px; height: 115px; border-radius: 50%;
+      border: 2px solid var(--glow-color);
+      box-shadow: 0 0 25px var(--glow-color);
+      margin: 0 auto 18px auto;
+      transition: all 1.2s ease;
+      transform: translateZ(40px); /* ৩ডি পপ-আউট এফেক্ট */
+    }
+
+    .btn-link {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      color: #fff; padding: 12px; margin: 12px 0;
+      border-radius: 15px; text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      transform: translateZ(25px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-link:hover {
+      background: var(--glow-color); color: #000;
+      box-shadow: 0 0 20px var(--glow-color);
+      transform: translateZ(35px) translateY(-2px);
+    }
+
+    .btn-dashboard {
+      background: linear-gradient(45deg, #00f2fe, #4facfe); color: #000; font-weight: 700; border: none;
+    }
+
+    .theme-status {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+      opacity: 0.3; margin-top: 25px; transform: translateZ(15px);
+    }
+  </style>
 </head>
-<body id="mainBody" class="theme-night min-h-screen font-sans transition-colors duration-1000 relative overflow-x-hidden">
+<body>
 
-    <div id="canvas-container"></div>
+  <!-- কণা অ্যানিমেশনের জন্য ক্যানভাস ডেটা -->
+  <canvas id="particleCanvas"></canvas>
 
-    <header class="glass fixed top-0 left-0 w-full z-50 px-6 py-4">
-        <nav class="max-w-7xl mx-auto flex justify-between items-center">
-            <h2 class="text-2xl font-bold tracking-wider bg-gradient-to-r from-pink-500 to-violet-600 bg-clip-text text-transparent">DIGITAL UNIVERSE</h2>
-            <ul id="menu" class="flex gap-8 font-medium text-white">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div class="glass-card" data-tilt data-tilt-max="15" data-tilt-speed="500" data-tilt-glare data-tilt-max-glare="0.2">
+    <img src="18772.jpg" alt="KP Sumon" class="avatar">
+    
+    <h2 style="margin: 0; font-size: 26px; font-weight: 800; transform: translateZ(30px);">Charlli Sumon</h2>
+    <p style="opacity: 0.7; font-size: 13px; margin: 6px 0 24px 0; font-weight: 500; transform: translateZ(20px);">Full Stack Developer & AI Specialist</p>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 relative z-10">
-        <h1 class="text-5xl md:text-6xl font-extrabold text-white">Kp Súmöñ</h1>
-        <p class="text-lg text-gray-300 mt-4">FULL STACK DEVELOPER | AI SPECIALIST | FUTURE INNOVATOR</p>
-    </section>
+    <!-- ড্যাশবোর্ড পাথ ঠিক রাখা হয়েছে -->
+    <a href="dashboard/dashboard.html" class="btn-link btn-dashboard"><i class="fa-solid fa-terminal"></i> System Control Panel</a>
 
-    <section class="max-w-3xl mx-auto px-6 py-16 relative z-10">
-        <div class="glass p-8 rounded-2xl text-center">
-            <h3 class="text-2xl font-bold text-white mb-4">🤫 আমাকে একটি সিক্রেট মেসেজ পাঠাও!</h3>
-            <textarea id="secretMessage" class="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 h-28 mb-4" placeholder="আপনার গোপন বার্তাটি এখানে লিখুন..."></textarea>
-            <button id="sendMsgBtn" class="btn-premium">বার্তা পাঠান</button>
-            <p id="successAlert" class="text-emerald-400 mt-3 hidden">🎉 বার্তাটি সফলভাবে পৌঁছে গেছে!</p>
-        </div>
-    </section>
+    <div style="margin-top: 15px;">
+      <a href="https://github.com/kp-sumon/kp-sumon" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> GitHub Matrix</a>
+      <a href="https://www.facebook.com/Kp.sumon.96" target="_blank" class="btn-link"><i class="fa-brands fa-facebook"></i> Facebook Connect</a>
+      <a href="https://m.me/Kp.sumon.96" target="_blank" class="btn-link"><i class="fa-brands fa-facebook-messenger"></i> Secure Messenger</a>
+      <a href="https://t.me/iam_kpsumon_dev" target="_blank" class="btn-link"><i class="fa-brands fa-telegram"></i> Telegram Channel</a>
+    </div>
 
-    <!-- স্ক্রিপ্টস -->
-    <script type="module" src="firebase.js"></script>
-    <script type="module" src="script.js"></script>
-    <script src="three-bg.js"></script>
+    <div class="theme-status" id="themeStatus">System Initializing...</div>
+  </div>
+
+  <script>
+    const themes = ["default", "cyberpunk", "emerald", "sunset", "sapphire", "amethyst", "gold"];
+    let currentIdx = 0;
+    let glowColor = "#00f2fe";
+
+    // অডিও এলিমেন্ট সেটআপ (আপনার সিস্টেমে অডিও ফাইল থাকলে এটি পিচ শিফট করবে)
+    const introAudio = new Audio('intro.mp3'); 
+    introAudio.loop = true;
+
+    // লোকাল স্টোরেজ থেকে থিম রিড করা
+    const savedTheme = localStorage.getItem("user-theme") || "default";
+    currentIdx = themes.indexOf(savedTheme);
+    setTheme(savedTheme);
+
+    function setTheme(themeName) {
+      document.documentElement.setAttribute("data-theme", themeName);
+      localStorage.setItem("user-theme", themeName);
+      document.getElementById("themeStatus").textContent = `Engine: ${themeName} Core`;
+      
+      // থিম অনুযায়ী কণার কালার পরিবর্তন ও ভয়েস টিউন শিফটিং
+      if(themeName === "default") { glowColor = "#00f2fe"; introAudio.playbackRate = 1.0; }
+      if(themeName === "cyberpunk") { glowColor = "#ff007f"; introAudio.playbackRate = 0.85; } // রোবোটিক হেভি সাউন্ড
+      if(themeName === "emerald") { glowColor = "#00ff87"; introAudio.playbackRate = 1.1; }
+      if(themeName === "sunset") { glowColor = "#ff416c"; introAudio.playbackRate = 0.9; }
+      if(themeName === "sapphire") { glowColor = "#4facfe"; introAudio.playbackRate = 1.05; }
+      if(themeName === "amethyst") { glowColor = "#a855f7"; introAudio.playbackRate = 0.95; }
+      if(themeName === "gold") { glowColor = "#f5af19"; introAudio.playbackRate = 0.75; } // ডিপ ও সুদিং লাক্সারি সাউন্ড
+    }
+
+    // অটোমেটিক থিম সুইচার (প্রতি ৯ সেকেন্ড পর পর)
+    setInterval(() => {
+      currentIdx = (currentIdx + 1) % themes.length;
+      setTheme(themes[currentIdx]);
+    }, 9000);
+
+    // ডায়নামিক ব্যাকগ্রাউন্ড কণা (Particles Engine)
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.speedY = Math.random() * -0.8 - 0.2; // কণাগুলো ধীরে ধীরে উপরের দিকে ভেসে উঠবে
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.y < 0) { this.y = canvas.height; this.x = Math.random() * canvas.width; }
+      }
+      draw() {
+        ctx.fillStyle = glowColor;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = glowColor;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 65; i++) { particles.push(new Particle()); }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ৩ডি গ্লাস টিল্ট ইনিশিয়ালাইজেশন
+    VanillaTilt.init(document.querySelector(".glass-card"));
+  </script>
 </body>
 </html>
