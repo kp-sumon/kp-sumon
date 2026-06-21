@@ -101,10 +101,18 @@
   <canvas id="particleCanvas"></canvas>
 
   <div class="glass-card" data-tilt data-tilt-max="15" data-tilt-speed="500" data-tilt-glare data-tilt-max-glare="0.2">
-    <img src="18772.jpg" alt="KP Sumon" class="avatar">
+    <!-- প্রোফাইল পিকচার -->
+    <img src="assets/images/Copilot_20260615_235819.png" alt="KP Sumon" class="avatar" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid #6366f1; object-fit: cover;">
     
+    <!-- নাম ও পদবি -->
     <h2 style="margin: 0; font-size: 26px; font-weight: 800; transform: translateZ(30px);">Charlli Sumon</h2>
     <p style="opacity: 0.7; font-size: 13px; margin: 6px 0 24px 0; font-weight: 500; transform: translateZ(20px);">Full Stack Developer & AI Specialist</p>
+
+    <!-- ক্যালকুলেশন রেজাল্ট সেকশন -->
+    <div id="math-result" style="margin-bottom: 20px; color: #00f2fe; font-family: monospace; font-size: 14px;">
+        System Status: Calculating...
+    </div>
+
 
     <!-- ড্যাশবোর্ড পাথ ঠিক রাখা হয়েছে -->
     <a href="dashboard/dashboard.html" class="btn-link btn-dashboard"><i class="fa-solid fa-terminal"></i> System Control Panel</a>
@@ -119,7 +127,14 @@
     <div class="theme-status" id="themeStatus">System Initializing...</div>
   </div>
 
-  <script>
+  <script>    // ক্যালকুলেশন লজিক
+    let num1 = 1;
+    let num2 = 2;
+    let sum = num1 + num2;
+
+    // আইডি অনুযায়ী রেজাল্টটি আপডেট করা
+    document.getElementById("math-result").innerHTML = "System Status: Online <br> <strong>Result: " + sum + "</strong>";
+    
     const themes = ["default", "cyberpunk", "emerald", "sunset", "sapphire", "amethyst", "gold"];
     let currentIdx = 0;
     let glowColor = "#00f2fe";
